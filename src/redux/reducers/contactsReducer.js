@@ -1,4 +1,4 @@
-import { getContactsFromLocalStorage } from 'utils/getContactsFromLocalStorage';
+// import { getContactsFromLocalStorage } from 'utils/getContactsFromLocalStorage';
 
 const initialState = {
   contacts: [

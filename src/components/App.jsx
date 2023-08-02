@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { Phonebook } from './Phonebook/Phonebook';
 import { ContactsList } from './ContactsList/ContactsList';
-import { getContactsFromLocalStorage } from 'utils/getContactsFromLocalStorage';
-import { useSelector } from 'react-redux';
+// import { getContactsFromLocalStorage } from 'utils/getContactsFromLocalStorage';
+// import { useSelector } from 'react-redux';
 
 export const App = () => {
 
