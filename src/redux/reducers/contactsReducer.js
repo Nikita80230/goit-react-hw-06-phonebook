@@ -1,5 +1,7 @@
 // import { getContactsFromLocalStorage } from 'utils/getContactsFromLocalStorage';
 
+import { createSlice } from '@reduxjs/toolkit';
+
 const initialState = {
   contacts: [
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -10,32 +12,51 @@ const initialState = {
   filter: '',
 };
 
-export const contactsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'contacts/addNewContact': {
-      return {
-        ...state,
-        contacts: state.contacts.some(
-          contact => contact.name === action.payload.name
-        )
-          ? [...state.contacts]
-          : [...state.contacts, action.payload],
-      };
-    }
-    case 'contacts/searchContactByName': {
-      return {
-        ...state,
-        filter: action.payload,
-      };
-    }
-    case 'contacts/removeContact': {
-      return {
-        ...state,
-        contacts: state.contacts.filter(({ id }) => id !== action.payload),
-      };
-    }
+const contactListSlice = createSlice({
+  name: 'contactList',
+  initialState,
+  reducers: {
+    addNewContact: (state, { payload }) => {
+      state.contacts.push(payload);
+    },
+    setFilter: (state, { payload }) => {
+      state.filter = payload;
+    },
+    removeContact: (state, { payload }) => {
+      state.contacts = state.contacts.filter(({ id }) => id !== payload);
+    },
+  },
+});
 
-    default:
-      return state;
-  }
-};
+export const { addNewContact, setFilter, removeContact } =
+  contactListSlice.actions;
+export const contactListReducer = contactListSlice.reducer;
+// export const contactsReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case 'contacts/addNewContact': {
+//       return {
+//         ...state,
+//         contacts: state.contacts.some(
+//           contact => contact.name === action.payload.name
+//         )
+//           ? [...state.contacts]
+//           : [...state.contacts, action.payload],
+//       };
+//     }
+//     case 'contacts/searchContactByName': {
+//       return {
+//         ...state,
+//         filter: action.payload,
+//       };
+//     }
+//     case 'contacts/removeContact': {
+//       return {
+//         ...state,
+//         contacts: state.contacts.filter(({ id }) => id !== action.payload),
+//       };
+//     }
+
+//     default:
+//       return state;
+//   }
+// };

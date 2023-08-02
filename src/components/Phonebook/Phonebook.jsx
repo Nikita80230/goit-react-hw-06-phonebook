@@ -1,9 +1,13 @@
+import { nanoid } from 'nanoid';
 import css from './Phonebook.module.css';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/reducers/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewContact } from 'redux/reducers/contactsReducer';
 
 export const Phonebook = () => {
   const dispatch = useDispatch();
+  const { contacts } = useSelector(state => {
+    return state.contacts;
+  });
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -11,12 +15,18 @@ export const Phonebook = () => {
     const name = event.target.elements.name.value;
     const number = event.target.elements.number.value;
 
-    dispatch(
-      addContact({
-        name,
-        number,
-      })
-    );
+
+    if (contacts.some(contact => contact.name === name)) {
+      alert("what are you doing bitch? This contact has been added!!!!")
+    } else {
+      dispatch(
+        addNewContact({
+          name,
+          number,
+          id: nanoid()
+        })
+      )
+    }
 
     event.currentTarget.reset();
   };
