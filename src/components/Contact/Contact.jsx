@@ -1,13 +1,16 @@
-// import { nanoid } from "nanoid"
+import { useDispatch } from 'react-redux';
 import css from './Contact.module.css';
+import { removeContact } from 'redux/reducers/actions';
 
-export const Contact = ({ name, number, removeContact, id }) => {
+export const Contact = ({ name, number, id }) => {
+    const dispatch = useDispatch();
+
     return (
         <li className={css.contactItem}>
             <span>
                 {name}: {number}
             </span>
-            <button onClick={() => removeContact(id)} className={css.deleteButton}>
+            <button onClick={() => dispatch(removeContact(id))} className={css.deleteButton}>
                 Delete
             </button>
         </li>

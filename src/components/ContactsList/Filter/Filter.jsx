@@ -1,13 +1,13 @@
 import css from './Filter.module.css';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { searchContactByName } from 'redux/reducers/actions';
 
-export const Filter = ({ searchNameInPhonebook }) => {
-    const [contactsFromPhonebook, setContactsFromPhonebook] = useState('');
+export const Filter = () => {
+    const dispatch = useDispatch()
 
     const handleChange = event => {
-        setContactsFromPhonebook(event.currentTarget.value);
-
-        searchNameInPhonebook(event.currentTarget.value);
+        dispatch(searchContactByName(event.currentTarget.value))
     };
 
     return (
@@ -18,9 +18,14 @@ export const Filter = ({ searchNameInPhonebook }) => {
                     name="inputName"
                     onChange={handleChange}
                     type="text"
-                    value={contactsFromPhonebook}
                 />
             </div>
         </>
     );
 };
+
+// const [contactsFromPhonebook, setContactsFromPhonebook] = useState('');
+// console.log(event.currentTarget.value)
+// setContactsFromPhonebook(event.currentTarget.value);
+// searchNameInPhonebook(event.currentTarget.value);
+// value={contactsFromPhonebook}
