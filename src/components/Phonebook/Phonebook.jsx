@@ -17,7 +17,7 @@ export const Phonebook = () => {
 
 
     if (contacts.some(contact => contact.name === name)) {
-      alert("what are you doing bitch? This contact has been added!!!!")
+      alert("what are you doing? This contact has been already added!!!!")
     } else {
       dispatch(
         addNewContact({

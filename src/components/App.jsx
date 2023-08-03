@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react';
 import { Phonebook } from './Phonebook/Phonebook';
 import { ContactsList } from './ContactsList/ContactsList';
 // import { getContactsFromLocalStorage } from 'utils/getContactsFromLocalStorage';
@@ -13,9 +12,10 @@ export const App = () => {
 
   return (
     <div>
+
       <Phonebook />
-      <ContactsList
-      />
+      <ContactsList />
+
     </div>
   );
 };
